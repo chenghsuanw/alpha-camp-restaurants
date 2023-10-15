@@ -18,6 +18,10 @@ app.get('/restaurants', (req, res) => {
     res.render('index', { restaurants: restaurants })
 })
 
+app.get('/restaurants/:id', (req, res) => {
+    res.render('detail')
+})
+
 app.listen(port, () => {
     console.log(`express server is running on http://localhost:${port}`)
 })
