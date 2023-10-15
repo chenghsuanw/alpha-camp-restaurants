@@ -24,6 +24,14 @@ app.get('/restaurants/:id', (req, res) => {
     res.render('detail', { restaurant: restaurant })
 })
 
+app.get('/search', (req, res) => {
+    const keyword = req.query.keyword.trim()
+    const results = keyword ? restaurants.filter((r) =>
+        r.name.toLowerCase().includes(keyword.toLowerCase()) || r.category.includes(keyword.toLowerCase())
+    ) : restaurants
+    res.render('index', { restaurants: results, keyword: keyword })
+})
+
 app.listen(port, () => {
     console.log(`express server is running on http://localhost:${port}`)
 })
